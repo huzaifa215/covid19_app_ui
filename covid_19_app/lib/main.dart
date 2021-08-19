@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 Container(
                     margin: EdgeInsets.only(right: 7),
                     child: RaisedButton(
-                      color: Colors.grey.shade8git00,
+                      color: Colors.grey.shade900,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       onPressed: () {},
