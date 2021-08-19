@@ -1,4 +1,6 @@
 import 'package:covid_19_app/utils/data_source.dart';
+import 'package:covid_19_app/widgets/world_wide_pannel.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -39,6 +41,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               padding: EdgeInsets.all(10),
@@ -55,6 +58,32 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(fontSize: 15, color: Colors.orange.shade800),
               ),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Text(
+                    "World Wide",
+                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500),
+                  ),
+                ),
+                // SizedBox(width: 0,),
+                Container(
+                    margin: EdgeInsets.only(right: 7),
+                    child: RaisedButton(
+                      color: Colors.grey.shade8git00,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      onPressed: () {},
+                      child: Text(
+                        "Regional",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ))
+              ],
+            ),
+            WorldWidePanel(),
           ],
         ),
       ),
