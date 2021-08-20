@@ -167,19 +167,18 @@ class _HomePageState extends State<HomePage> {
             ),
             InformationPanel(),
             SizedBox(
-              height: 15,
+              height: 6,
             ),
             Center(
                 child: Text(
               "WE ARE TOGETHER IN THE FIGHT",
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: Colors.orange.shade600,
               ),
             )),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
           ],
         ),
