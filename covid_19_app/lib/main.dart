@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:covid_19_app/utils/data_source.dart';
+import 'package:covid_19_app/widgets/most_affected_countries.dart';
 import 'package:covid_19_app/widgets/world_wide_pannel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -36,10 +37,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Map worldData;
-  String url = "https://corona.lmao.ninja/v3/covid-19/all";
+  List countryData;
 
   fetchWorldWideData() async {
-    http.Response response = await http.get(Uri.parse(url));
+    http.Response response =
+        await http.get(Uri.parse("https://corona.lmao.ninja/v3/covid-19/all"));
     setState(() {
       worldData = json.decode(response.body);
       // print("error");
@@ -47,9 +49,18 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  fetchCountryData() async {
+    http.Response response = await http
+        .get(Uri.parse('https://corona.lmao.ninja/v3/covid-19/countries'));
+    setState(() {
+      countryData = json.decode(response.body);
+    });
+  }
+
   @override
   void initState() {
     fetchWorldWideData();
+    fetchCountryData();
     // TODO: implement initState
     super.initState();
   }
@@ -89,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Text(
                     "World Wide",
-                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
                   ),
                 ),
                 // SizedBox(width: 0,),
@@ -116,7 +127,24 @@ class _HomePageState extends State<HomePage> {
               WorldWidePanel(
                 worldData: worldData,
               ),
-            // TODO: World Wide Panel
+            // TODO: Most Affected Countries
+            SizedBox(height: 10,),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: Text(
+                "Most Affected Countries",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+              ),
+            ),
+            if (countryData == null)
+              Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: CircularProgressIndicator())
+            else
+              MostAffectedPanel(
+                countryData: countryData,
+              ),
           ],
         ),
       ),
