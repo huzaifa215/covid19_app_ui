@@ -158,13 +158,13 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 10,
             ),
-            // Padding(
-            //   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            //   child: Text(
-            //     "FAQ",
-            //     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
-            //   ),
-            // ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              child: Text(
+                "COVID-19 Information",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+              ),
+            ),
             InformationPanel(),
             SizedBox(
               height: 15,
@@ -179,7 +179,7 @@ class _HomePageState extends State<HomePage> {
               ),
             )),
             SizedBox(
-              height: 30,
+              height: 20,
             ),
           ],
         ),
