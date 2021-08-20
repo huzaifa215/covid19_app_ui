@@ -1,13 +1,17 @@
+import 'dart:convert';
+
 import 'package:covid_19_app/utils/data_source.dart';
 import 'package:covid_19_app/widgets/world_wide_pannel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  // fetch data form api
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -31,6 +35,25 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Map worldData;
+  String url = "https://corona.lmao.ninja/v3/covid-19/all";
+
+  fetchWorldWideData() async {
+    http.Response response = await http.get(Uri.parse(url));
+    setState(() {
+      worldData = json.decode(response.body);
+      // print("error");
+      // print(worldData);
+    });
+  }
+
+  @override
+  void initState() {
+    fetchWorldWideData();
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +81,7 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(fontSize: 15, color: Colors.orange.shade800),
               ),
             ),
+            // TODO: World Wide Panel
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -83,7 +107,16 @@ class _HomePageState extends State<HomePage> {
                     ))
               ],
             ),
-            WorldWidePanel(),
+            if (worldData == null)
+              Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: CircularProgressIndicator())
+            else
+              WorldWidePanel(
+                worldData: worldData,
+              ),
+            // TODO: World Wide Panel
           ],
         ),
       ),
