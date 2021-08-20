@@ -26,8 +26,8 @@ class MostAffectedPanel extends StatelessWidget {
               ),
                 child: Row(
                   children: [
-                    Image.network(countryData[index]["countryInfo"]["flag"],height: 27git,),
-                    SizedBox(width: 10,),
+                    Image.network(countryData[index]["countryInfo"]["flag"],height: 27,),
+                    SizedBox(width: 20,),
                     Text(
                       countryData[index]['country'],
                       style: TextStyle(fontWeight: FontWeight.bold),

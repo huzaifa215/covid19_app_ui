@@ -1,10 +1,12 @@
 import 'dart:convert';
 
-import 'package:covid_19_app/utils/data_source.dart';
+import 'package:covid_19_app/models/data_source.dart';
+import 'package:covid_19_app/widgets/info_pannel.dart';
 import 'package:covid_19_app/widgets/most_affected_countries.dart';
 import 'package:covid_19_app/widgets/world_wide_pannel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:getwidget/components/accordion/gf_accordion.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -44,8 +46,6 @@ class _HomePageState extends State<HomePage> {
         await http.get(Uri.parse("https://corona.lmao.ninja/v3/covid-19/all"));
     setState(() {
       worldData = json.decode(response.body);
-      // print("error");
-      // print(worldData);
     });
   }
 
@@ -128,7 +128,9 @@ class _HomePageState extends State<HomePage> {
                 worldData: worldData,
               ),
             // TODO: Most Affected Countries
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               child: Text(
@@ -145,6 +147,40 @@ class _HomePageState extends State<HomePage> {
               MostAffectedPanel(
                 countryData: countryData,
               ),
+            // GFAccordion(
+            //     title: 'GF Accordion',
+            //     content: 'GetWidget is an open source library that comes with pre-build 1000+ UI components.',
+            //     expandedTitleBackgroundColor: Colors.grey.shade200,
+            //     collapsedTitleBackgroundColor:Colors.grey.shade500,
+            //     collapsedIcon: Icon(Icons.add),
+            //     expandedIcon: Icon(Icons.minimize)
+            // ),
+            SizedBox(
+              height: 10,
+            ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            //   child: Text(
+            //     "FAQ",
+            //     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+            //   ),
+            // ),
+            InformationPanel(),
+            SizedBox(
+              height: 15,
+            ),
+            Center(
+                child: Text(
+              "WE ARE TOGETHER IN THE FIGHT",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.orange.shade600,
+              ),
+            )),
+            SizedBox(
+              height: 30,
+            ),
           ],
         ),
       ),
