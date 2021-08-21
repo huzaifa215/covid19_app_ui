@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 import 'package:covid_19_app/models/data_source.dart';
+import 'package:covid_19_app/screens/country_page.dart';
 import 'package:covid_19_app/widgets/info_pannel.dart';
 import 'package:covid_19_app/widgets/most_affected_countries.dart';
 import 'package:covid_19_app/widgets/world_wide_pannel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/components/accordion/gf_accordion.dart';
 import 'package:http/http.dart' as http;
 
 void main() {
@@ -110,7 +110,12 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.grey.shade900,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CountryPage()));
+                      },
                       child: Text(
                         "Regional",
                         style: TextStyle(color: Colors.white),
@@ -147,14 +152,6 @@ class _HomePageState extends State<HomePage> {
               MostAffectedPanel(
                 countryData: countryData,
               ),
-            // GFAccordion(
-            //     title: 'GF Accordion',
-            //     content: 'GetWidget is an open source library that comes with pre-build 1000+ UI components.',
-            //     expandedTitleBackgroundColor: Colors.grey.shade200,
-            //     collapsedTitleBackgroundColor:Colors.grey.shade500,
-            //     collapsedIcon: Icon(Icons.add),
-            //     expandedIcon: Icon(Icons.minimize)
-            // ),
             SizedBox(
               height: 10,
             ),
