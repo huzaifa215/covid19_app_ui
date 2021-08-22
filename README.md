@@ -8,6 +8,7 @@
 - Get worldwide COVID-19 cases Result
 - Create an FAQ's
 - Get Countries Wise Data of COVID-19 Cases
+- Real Time Search
 
 
 
