@@ -32,6 +32,7 @@ dependencies:
   shared_preferences:
   http:
   getwidget:
+  pie_chart:
 
 
 dev_dependencies:

@@ -23,7 +23,7 @@ class WorldWidePanel extends StatelessWidget {
             panelcolor: Colors.blue.shade200,
             textcolor: Colors.blue.shade800,
             title: "ACTIVE",
-            count: worldData["active"].toString(),
+            count:  worldData["cases"].toString()
           ),
           StatusPanel(
             panelcolor: Colors.green.shade200,

@@ -2,9 +2,11 @@ import 'dart:convert';
 import 'package:covid_19_app/models/data_source.dart';
 import 'package:covid_19_app/widgets/info_pannel.dart';
 import 'package:covid_19_app/widgets/most_affected_countries.dart';
+import 'package:covid_19_app/widgets/pie_chart_widget.dart';
 import 'package:covid_19_app/widgets/world_wide_pannel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:pie_chart/pie_chart.dart';
 import 'country_page.dart';
 
 // api call here
@@ -18,6 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Map worldData;
   List countryData;
+  Map data;
 
   fetchWorldWideData() async {
     http.Response response =
@@ -124,10 +127,24 @@ class _HomePageState extends State<HomePage> {
                 WorldWidePanel(
                   worldData: worldData,
                 ),
-              // TODO: Most Affected Countries
+              // TODO: PieChart
               SizedBox(
                 height: 10,
               ),
+              // Pie Chart
+              if (worldData == null)
+                Container(
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: CircularProgressIndicator())
+              else
+                PieChartWidget(
+                  worldData: worldData,
+                ),
+              SizedBox(
+                height: 10,
+              ),
+              // TODO: Most Affected Countries
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 child: Text(
